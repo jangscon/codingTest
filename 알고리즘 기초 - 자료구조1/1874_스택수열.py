@@ -2,39 +2,35 @@ import sys
 
 N = int(input())
 
-numlist = []
-numlistIndex = 0 
-currentNum = 1
+inputString = []
+Index = 0
+NoStack = False
 stack = []
-output = ''
+output = []
 
 for i in range(N) :
-    numlist.append(int(sys.stdin.readline()))
+    inputString.append(int(sys.stdin.readline()))
 
-while numlistIndex < N-1 :
-    if currentNum == numlist[numlistIndex] :
-        currentNum += 1
-        numlistIndex += 1
-        output += '+-'
-    
-    elif currentNum < numlist[numlistIndex] :
-        stack.append(currentNum)
-        currentNum += 1
-        output += '+'
+for i in range(1, N+1) :
+    stack.append(i)
+    output.append('+')
 
-    elif stack :
-        if stack[-1] == numlist[numlistIndex] :
+    while stack :
+        if stack[-1] == inputString[Index] :
             stack.pop()
-            numlistIndex += 1
-            output += '-'
-        elif stack[-1] > numlist[numlistIndex] :
+            Index += 1
+            output.append('-') 
+        elif stack[-1] > inputString[Index] :
+            NoStack = True
             break
-if currentNum == N+1 and numlistIndex == N-1:
-    for i in output :
-        print(i)
-    print('-')
-if N == 1 :
-    print('+')
-    print('-')
-else :
+        else :
+            break
+ 
+    if NoStack :
+        break
+
+if NoStack or stack:
     print('NO')
+else :
+    for word in output :
+        print(word)
