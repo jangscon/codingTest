@@ -1,4 +1,4 @@
-
+ 
 a = input()
 stack = [] #스택
 res='' #출력

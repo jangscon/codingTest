@@ -1,7 +1,7 @@
 from sys import stdin
 from collections import Counter
 
-
+ 
 stack = []
 n = int(stdin.readline())
 s = list(stdin.readline().split())
