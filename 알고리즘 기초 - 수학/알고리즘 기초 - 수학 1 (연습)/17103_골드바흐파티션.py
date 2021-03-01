@@ -1,31 +1,24 @@
-T = int(input())
+import sys
+T = int(sys.stdin.readline())
+MAX = 1000000
+check = [False, False] + [True] * (MAX-1)
+primes = []
+prime_count = 0
+for i in range(1, MAX+1):
+    if check[i]:
+        primes.append(i)
+        prime_count += 1
+        for j in range(i*2, MAX+1, i):
+            check[j] = False
+            
+for _ in range(T):    
+    N = int(sys.stdin.readline())
+    result = 0
+    for i in range(1, prime_count):
+        if primes[i] <= N - primes[i]:
+            if check[N-primes[i]] == True:
+                result += 1
+        else:
+            break
 
-N = []
-result = []
-
-for i in range(T) :
-    N.append(int(input()))
-
-bigger = max(N)
-prime = [False]*2 + [True]*(bigger-1)
-
-for i in range(2,bigger+1) :
-    if prime[i] :
-        num = i*2
-        while num <= bigger :
-            prime[num] = False 
-            num = num + i
-
-while N :
-    num = N.pop(-1)
-    temp = 2
-    count = 0
-    while temp <= num // 2 :
-        if prime[temp] and prime[num - temp] : count += 1
-        temp += 1
-    result.append(count)
-
-result = reversed(result)
-for i in result :
-    print(i)
-    
+    print(result)
