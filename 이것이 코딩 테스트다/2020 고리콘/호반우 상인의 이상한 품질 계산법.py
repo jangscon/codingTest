@@ -14,4 +14,3 @@ else :
     if N % 2 == 1 :
         result += hovanu[hovanu_range]
     print(result)
-print(13 ^ 9)
